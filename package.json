@@ -1,0 +1,26 @@
+{
+  "name": "serverless-openapi-example",
+  "version": "1.0.0",
+  "description": "An example of Serverless using OpenAPI to document the endpoints available",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --config './test/.mocharc.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JaredCE/serverless-openapi-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1691.0"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "^5.8.0",
+    "chai": "^4.5.0",
+    "mocha": "^10.7.3",
+    "serverless": "^3.39.0",
+    "serverless-openapi-documenter": "^0.0.107",
+    "sinon": "^19.0.2"
+  }
+}

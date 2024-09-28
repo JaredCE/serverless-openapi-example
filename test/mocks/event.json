@@ -1,0 +1,49 @@
+{
+  "body": null,
+  "headers": {},
+  "multiValueHeaders": {},
+  "httpMethod": "POST",
+  "isBase64Encoded": false,
+  "path": "",
+  "pathParameters": {
+    "id": "abc123"
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "accountId": "",
+    "apiId": "",
+    "authorizer": {
+      "isAdmin": "true",
+      "isInternalSource": "false",
+      "userData": "{\"Username\":\"c2cb7ca1-19c3-4c8b-9333-710bde29c694\",\"UserAttributes\":[{\"Name\":\"sub\",\"Value\":\"0e9d1ef2-f5ea-48c3-be5f-dfd6f6cb624a\"},{\"Name\":\"email_verified\",\"Value\":\"true\"},{\"Name\":\"custom:contact_id\",\"Value\":\"c2cb7ca1-19c3-4c8b-9333-710bde29c694\"},{\"Name\":\"phone_number_verified\",\"Value\":\"false\"},{\"Name\":\"given_name\",\"Value\":\"Wong\"},{\"Name\":\"custom:member_id\",\"Value\":\"20281911\"},{\"Name\":\"family_name\",\"Value\":\"Tru\"},{\"Name\":\"email\",\"Value\":\"wong.tru@aat.org.uk\"}],\"PreferredMfaSetting\":\"SOFTWARE_TOKEN_MFA\",\"UserMFASettingList\":[\"SOFTWARE_TOKEN_MFA\"],\"CognitoGroups\":[\"default\",\"staff\",\"admin\"]}"
+    },
+    "protocol": "",
+    "httpMethod": "POST",
+    "identity": {
+      "accessKey": null,
+      "accountId": null,
+      "apiKey": null,
+      "apiKeyId": null,
+      "caller": null,
+      "clientCert": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoAuthenticationType": null,
+      "cognitoIdentityId": null,
+      "cognitoIdentityPoolId": null,
+      "principalOrgId": null,
+      "sourceIp": "",
+      "user": null,
+      "userAgent": null,
+      "userArn": null
+    },
+    "path": "",
+    "stage": "UAT",
+    "requestId": "",
+    "requestTimeEpoch": 123,
+    "resourceId": "",
+    "resourcePath": ""
+  },
+  "resource": ""
+}
