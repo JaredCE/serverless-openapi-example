@@ -20,6 +20,7 @@
     "chai": "^4.5.0",
     "mocha": "^10.7.3",
     "serverless": "^3.39.0",
+    "serverless-openapi-documenter": "^0.0.107",
     "sinon": "^19.0.2"
   }
 }
