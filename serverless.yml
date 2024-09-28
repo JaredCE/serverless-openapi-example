@@ -1,0 +1,119 @@
+service: openAPIExample
+frameworkVersion: "3"
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: eu-west-1
+  versionFunctions: false
+  stage: ${opt:stage}
+  deploymentBucket: ${env:SLS_BUCKET}
+  logRetentionInDays: 90
+  environment:
+    NODE_ENV: ${env:NODE_ENV}
+    CORS_URL: ${env:CORS_URL}
+    STAGE: ${env:STAGE}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        - arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/specificData
+
+custom:
+  documentation:
+    title: ${file(./package.json):title}
+    version: ${file(./package.json):version}
+    description: >
+      ${file(./package.json):description}.
+      Built for Node.js ${file(./package.json):engines.node}
+    license: ${file(./package.json):license}
+    servers:
+      url: https://{serverURL}/example
+      description: The endpoint
+      variables:
+        serverURL:
+          default: example.com
+          description: the API URL
+    models:
+      - name: SuccessResponse
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                resetAt:
+                  type: number
+      - name: ErrorResponse
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                errors:
+                  type: object
+plugins:
+  - serverless-openapi-documenter
+
+package:
+  individually: true
+
+functions:
+  HelloWorld:
+    handler: index.helloWorld
+    events:
+      - http:
+          path: /hello/{world}
+          method: GET
+          cors:
+            origin: "*"
+          documentation:
+            pathParams:
+              - name: "id"
+                description: "The Id of the data we're retrieving"
+                schema:
+                  type: "string"
+            summary: Brings back specific data
+            description: Brings back data from the Hello World dynamo table
+            methodResponses:
+              - statusCode: 200
+                owasp:
+                  strictTransportSecurity:
+                    value: "max-age=31536000; includeSubDomains"
+                  contentSecurityPolicy:
+                    value: "default-src 'self'; object-src 'none'; child-src 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+                  referrerPolicy:
+                    value: "no-referrer"
+                responseBody:
+                  description: Data retrieved
+                responseModels:
+                  application/json: SuccessResponse
+              - statusCode: 400
+                owasp:
+                  strictTransportSecurity:
+                    value: "max-age=31536000; includeSubDomains"
+                  contentSecurityPolicy:
+                    value: "default-src 'self'; object-src 'none'; child-src 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+                  referrerPolicy:
+                    value: "no-referrer"
+                responseBody:
+                  description: Generic error
+                responseModels:
+                  application/json: ErrorResponse
+              - statusCode: 404
+                owasp:
+                  strictTransportSecurity:
+                    value: "max-age=31536000; includeSubDomains"
+                  contentSecurityPolicy:
+                    value: "default-src 'self'; object-src 'none'; child-src 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+                  referrerPolicy:
+                    value: "no-referrer"
+                responseBody:
+                  description: Not Found
+                responseModels:
+                  application/json: ErrorResponse
